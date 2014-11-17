@@ -978,7 +978,7 @@ sub verified_identity {
 
         my $ua  = $self->ua;
         my $res = $ua->request($req);
-        return $self->_fail("naive_verify_failed_network")
+        return $self->_fail("naive_verify_failed_network", sprintf("%s returned %s", $req->uri, $res->status_line))
           unless $res && $res->is_success;
 
         my $content = $res->content;
